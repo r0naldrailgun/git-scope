@@ -36,6 +36,37 @@
 
   backdrop-filter: blur(16px);
 }
+.header-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+}
+
+.favorite-count {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 6px;
+
+  min-width: 46px;
+
+  padding: 8px 10px;
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+
+  color: #d29922;
+  background: var(--surface);
+
+  font-family: "Courier New", monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.favorite-count span:first-child {
+  font-size: 0.95rem;
+}
 
 .header-container {
   width: min(1100px, calc(100% - 40px));
@@ -290,6 +321,11 @@
     flex-direction: column;
 
     gap: 16px;
+  }
+  .header-actions {
+    width: 100%;
+  
+    justify-content: space-between;
   }
 
   .main-nav {
