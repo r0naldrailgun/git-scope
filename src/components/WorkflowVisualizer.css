@@ -41,12 +41,31 @@
     border-radius: var(--radius);
   
     background: rgba(22, 27, 34, 0.82);
+  
+    box-shadow:
+      0 20px 70px rgba(0, 0, 0, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.02);
   }
   
   .workflow-canvas {
+    position: relative;
+  
     overflow-x: auto;
   
     padding: 30px;
+  
+    background-image:
+      linear-gradient(
+        rgba(255, 255, 255, 0.025) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.025) 1px,
+        transparent 1px
+      );
+  
+    background-size: 28px 28px;
   }
   
   .workflow-svg {
@@ -64,6 +83,9 @@
     stroke-width: 4;
   
     stroke-linecap: round;
+    stroke-linejoin: round;
+  
+    opacity: 0.9;
   }
   
   .workflow-node {
@@ -158,8 +180,35 @@
   .workflow-node-ring {
     fill: none;
   
-    stroke: rgba(255, 255, 255, 0.35);
+    stroke: rgba(255, 255, 255, 0.45);
     stroke-width: 2;
+  
+    transform-box: fill-box;
+    transform-origin: center;
+  
+    animation: node-pulse 1.8s ease-out infinite;
+    
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .workflow-node-ring {
+      animation: none;
+    }
+  }
+  @keyframes node-pulse {
+    0% {
+      transform: scale(0.85);
+      opacity: 1;
+    }
+  
+    70% {
+      transform: scale(1.25);
+      opacity: 0;
+    }
+  
+    100% {
+      transform: scale(1.25);
+      opacity: 0;
+    }
   }
   
   .workflow-step-selector {
