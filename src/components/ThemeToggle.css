@@ -1,0 +1,180 @@
+.header-actions {
+    display: flex;
+    align-items: center;
+  
+    gap: 10px;
+  }
+  
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+  
+    gap: 7px;
+  
+    padding: 8px 10px;
+  
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  
+    cursor: pointer;
+  
+    color: var(--text-secondary);
+    background: var(--surface);
+  
+    font-size: 0.78rem;
+    font-weight: 700;
+  
+    transition:
+      color 150ms ease,
+      background 150ms ease,
+      border-color 150ms ease;
+  }
+  
+  .theme-toggle:hover {
+    color: var(--text-primary);
+  
+    border-color: #484f58;
+  
+    background: var(--surface-hover);
+  }
+  
+  .theme-toggle-icon {
+    font-size: 0.95rem;
+    line-height: 1;
+  }
+  
+  .theme-toggle-label {
+    line-height: 1;
+  }
+  
+  
+  /* -------------------------
+     LIGHT THEME
+  -------------------------- */
+  
+  [data-theme='light'] {
+    --background: #f6f8fa;
+    --surface: #ffffff;
+    --surface-hover: #f3f4f6;
+    --border: #d0d7de;
+  
+    --text-primary: #1f2328;
+    --text-secondary: #59636e;
+  
+    --accent: #0969da;
+    --accent-soft: rgba(9, 105, 218, 0.12);
+    --green: #1a7f37;
+  
+    color-scheme: light;
+  }
+  
+  [data-theme='dark'] {
+    color-scheme: dark;
+  }
+  
+  [data-theme='light'],
+  [data-theme='light'] body {
+    background: #f6f8fa;
+  }
+  
+  [data-theme='light'] .app-shell {
+    background:
+      radial-gradient(
+        circle at top left,
+        rgba(9, 105, 218, 0.08),
+        transparent 32rem
+      ),
+      var(--background);
+  }
+  
+  [data-theme='light'] .site-header {
+    border-color: rgba(208, 215, 222, 0.85);
+  
+    background: rgba(246, 248, 250, 0.9);
+  }
+  
+  [data-theme='light'] .brand-mark,
+  [data-theme='light'] .feature-card,
+  [data-theme='light'] .command-card,
+  [data-theme='light'] .workflow-panel,
+  [data-theme='light'] .commit-input-panel,
+  [data-theme='light'] .commit-result-panel,
+  [data-theme='light'] .commit-example-bar {
+    background: rgba(255, 255, 255, 0.9);
+  }
+  
+  [data-theme='light'] .command-summary span,
+  [data-theme='light'] .commit-check-item {
+    background: rgba(246, 248, 250, 0.8);
+  }
+  
+  [data-theme='light'] .command-block code,
+  [data-theme='light'] .workflow-command code,
+  [data-theme='light'] .commit-message-input,
+  [data-theme='light'] .commit-suggestion code {
+    color: #0550ae;
+    background: #f6f8fa;
+  }
+  
+  [data-theme='light'] .workflow-step-button {
+    background: #ffffff;
+  }
+  
+  [data-theme='light']
+    .workflow-step-button:hover {
+    background: #f3f4f6;
+  }
+  
+  [data-theme='light']
+    .workflow-step-button.active {
+    background: rgba(9, 105, 218, 0.1);
+  }
+  
+  [data-theme='light'] .workflow-details {
+    background: rgba(255, 255, 255, 0.35);
+  }
+  
+  [data-theme='light'] .workflow-canvas {
+    background-image:
+      linear-gradient(
+        rgba(31, 35, 40, 0.035) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        90deg,
+        rgba(31, 35, 40, 0.035) 1px,
+        transparent 1px
+      );
+  }
+  
+  [data-theme='light'] .workflow-edge {
+    stroke: #8c959f;
+  }
+  
+  [data-theme='light'] .score-track {
+    background: #d8dee4;
+  }
+  
+  [data-theme='light']
+    .commit-examples button {
+    background: #ffffff;
+  }
+  
+  [data-theme='light']
+    .commit-examples button:hover {
+    background: #f3f4f6;
+  }
+  
+  @media (max-width: 760px) {
+    .header-actions {
+      width: 100%;
+  
+      justify-content: space-between;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .theme-toggle-label {
+      display: none;
+    }
+  }
