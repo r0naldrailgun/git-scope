@@ -10,7 +10,9 @@ function getInitialTheme(): Theme {
   }
 
   const savedTheme =
-    window.localStorage.getItem(THEME_STORAGE_KEY)
+    window.localStorage.getItem(
+      THEME_STORAGE_KEY,
+    )
 
   if (
     savedTheme === 'dark' ||
@@ -32,7 +34,13 @@ export function useTheme() {
     useState<Theme>(getInitialTheme)
 
   useEffect(() => {
-    document.documentElement.dataset.theme = theme
+    document.documentElement.dataset.theme =
+      theme
+
+    window.localStorage.setItem(
+      THEME_STORAGE_KEY,
+      theme,
+    )
   }, [theme])
 
   function toggleTheme() {
