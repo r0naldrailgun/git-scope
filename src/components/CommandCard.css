@@ -1,0 +1,117 @@
+.command-card {
+    display: flex;
+    flex-direction: column;
+  
+    min-height: 320px;
+    padding: 24px;
+  
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  
+    background: rgba(22, 27, 34, 0.82);
+  
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      background 180ms ease;
+  }
+  
+  .command-card:hover {
+    transform: translateY(-4px);
+  
+    border-color: #484f58;
+  
+    background: var(--surface-hover);
+  }
+  
+  .command-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    margin-bottom: 22px;
+  }
+  
+  .command-category {
+    padding: 5px 9px;
+  
+    border: 1px solid var(--border);
+    border-radius: 999px;
+  
+    color: var(--text-secondary);
+  
+    font-family: "Courier New", monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  
+  .command-prompt {
+    color: var(--green);
+  
+    font-family: "Courier New", monospace;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+  
+  .command-name {
+    margin: 0 0 14px;
+  
+    color: var(--text-primary);
+  
+    font-family: "Courier New", monospace;
+    font-size: 1.3rem;
+  }
+  
+  .command-description {
+    margin: 0 0 24px;
+  
+    color: var(--text-secondary);
+  
+    line-height: 1.7;
+  }
+  
+  .command-block {
+    margin-top: auto;
+  }
+  
+  .command-block + .command-block {
+    margin-top: 14px;
+  }
+  
+  .command-block-label {
+    display: block;
+  
+    margin-bottom: 6px;
+  
+    color: var(--text-secondary);
+  
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+  
+  .command-block code {
+    display: block;
+  
+    width: 100%;
+  
+    padding: 11px 12px;
+  
+    overflow-x: auto;
+  
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  
+    background: #0d1117;
+  
+    color: #79c0ff;
+  
+    font-family: "Courier New", monospace;
+    font-size: 0.79rem;
+    line-height: 1.5;
+    white-space: nowrap;
+  }
+  
