@@ -1,21 +1,47 @@
+import ThemeToggle from './ThemeToggle'
+
 function Header() {
   return (
     <header className="site-header">
       <div className="header-container">
-        <a className="brand" href="#" aria-label="GitScope home">
-          <span className="brand-mark">&gt;_</span>
+        <a
+          className="brand"
+          href="#"
+          aria-label="GitScope home"
+        >
+          <span className="brand-mark">
+            &gt;_
+          </span>
 
           <div>
             <h1>GitScope</h1>
-            <p>Interactive Git Workflow Explorer</p>
+
+            <p>
+              Interactive Git Workflow Explorer
+            </p>
           </div>
         </a>
 
-        <nav className="main-nav" aria-label="Main navigation">
-          <a href="#commands">Commands</a>
-          <a href="#workflow">Workflow</a>
-          <a href="#commit-checker">Commit Checker</a>
-        </nav>
+        <div className="header-actions">
+          <nav
+            className="main-nav"
+            aria-label="Main navigation"
+          >
+            <a href="#commands">
+              Commands
+            </a>
+
+            <a href="#workflow">
+              Workflow
+            </a>
+
+            <a href="#commit-checker">
+              Commit Checker
+            </a>
+          </nav>
+
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   )
