@@ -2,6 +2,26 @@ import { useMemo, useState } from 'react'
 import { analyzeCommitMessage } from '../utils/commitMessage'
 import './CommitChecker.css'
 
+const commitExamples = [
+  {
+    label: 'Feature',
+    message: 'feat: add command search',
+  },
+  {
+    label: 'Bug fix',
+    message:
+      'fix: correct workflow spacing on mobile',
+  },
+  {
+    label: 'Weak',
+    message: 'update',
+  },
+  {
+    label: 'Vague',
+    message: 'fix stuff',
+  },
+]
+
 function CommitChecker() {
   const [message, setMessage] = useState('')
 
@@ -9,6 +29,9 @@ function CommitChecker() {
     () => analyzeCommitMessage(message),
     [message],
   )
+
+  const hasMessage =
+    message.trim().length > 0
 
   return (
     <section
@@ -29,14 +52,52 @@ function CommitChecker() {
         <p className="section-description">
           Enter a commit message and GitScope will check
           its structure, clarity, length, and description.
+          The result is an educational recommendation,
+          not a Git requirement.
         </p>
+      </div>
+
+      <div className="commit-example-bar">
+        <div>
+          <span className="example-label">
+            Try an example
+          </span>
+
+          <div className="commit-examples">
+            {commitExamples.map((example) => (
+              <button
+                key={example.label}
+                type="button"
+                onClick={() =>
+                  setMessage(example.message)
+                }
+              >
+                <span>{example.label}</span>
+
+                <code>{example.message}</code>
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
       <div className="commit-checker-layout">
         <div className="commit-input-panel">
-          <label htmlFor="commit-message">
-            Commit message
-          </label>
+          <div className="commit-input-heading">
+            <label htmlFor="commit-message">
+              Commit message
+            </label>
+
+            {hasMessage && (
+              <button
+                className="clear-commit-button"
+                type="button"
+                onClick={() => setMessage('')}
+              >
+                Clear
+              </button>
+            )}
+          </div>
 
           <textarea
             id="commit-message"
@@ -44,6 +105,7 @@ function CommitChecker() {
             value={message}
             rows={5}
             placeholder='Try: feat: add command search'
+            spellCheck="false"
             onChange={(event) =>
               setMessage(event.target.value)
             }
@@ -66,11 +128,16 @@ function CommitChecker() {
 
             <button
               type="button"
+              disabled={
+                message === analysis.suggestion
+              }
               onClick={() =>
                 setMessage(analysis.suggestion)
               }
             >
-              Use suggestion
+              {message === analysis.suggestion
+                ? 'Suggestion applied'
+                : 'Use suggestion'}
             </button>
           </div>
         </div>
@@ -88,16 +155,27 @@ function CommitChecker() {
               </strong>
             </div>
 
-            <span
-              className={`commit-strength strength-${analysis.strength
-                .toLowerCase()
-                .replace(' ', '-')}`}
-            >
-              {analysis.strength}
-            </span>
+            <div className="result-badges">
+              {analysis.detectedType && (
+                <span className="detected-type">
+                  {analysis.detectedType}
+                </span>
+              )}
+
+              <span
+                className={`commit-strength strength-${analysis.strength
+                  .toLowerCase()
+                  .replace(' ', '-')}`}
+              >
+                {analysis.strength}
+              </span>
+            </div>
           </div>
 
-          <div className="score-track">
+          <div
+            className="score-track"
+            aria-label={`Commit message score: ${analysis.score} out of 100`}
+          >
             <div
               className="score-fill"
               style={{
@@ -115,7 +193,8 @@ function CommitChecker() {
                 <span className="check-icon">
                   {check.status === 'pass'
                     ? '✓'
-                    : check.status === 'warning'
+                    : check.status ===
+                        'warning'
                       ? '!'
                       : '×'}
                 </span>
