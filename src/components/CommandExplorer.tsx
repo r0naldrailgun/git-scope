@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { gitCommands } from '../data/commands'
 import type { GitCommandCategory } from '../types/git'
 import CommandCard from './CommandCard'
 import './CommandExplorer.css'
+import './SearchControls.css'
 import './CategoryControls.css'
 
 type CategoryFilter = 'All' | GitCommandCategory
@@ -17,15 +18,31 @@ const categories: CategoryFilter[] = [
 ]
 
 function CommandExplorer() {
+  const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] =
     useState<CategoryFilter>('All')
 
-  const filteredCommands =
-    selectedCategory === 'All'
-      ? gitCommands
-      : gitCommands.filter(
-          (command) => command.category === selectedCategory,
-        )
+  const filteredCommands = useMemo(() => {
+    const normalizedSearchQuery = searchQuery.trim().toLowerCase()
+
+    return gitCommands.filter((command) => {
+      const matchesCategory =
+        selectedCategory === 'All' ||
+        command.category === selectedCategory
+
+      const matchesSearch =
+        normalizedSearchQuery === '' ||
+        command.name.toLowerCase().includes(normalizedSearchQuery) ||
+        command.description
+          .toLowerCase()
+          .includes(normalizedSearchQuery) ||
+        command.syntax.toLowerCase().includes(normalizedSearchQuery) ||
+        command.example.toLowerCase().includes(normalizedSearchQuery) ||
+        command.category.toLowerCase().includes(normalizedSearchQuery)
+
+      return matchesCategory && matchesSearch
+    })
+  }, [searchQuery, selectedCategory])
 
   return (
     <section className="command-explorer" id="commands">
@@ -43,6 +60,19 @@ function CommandExplorer() {
       </div>
 
       <div className="command-controls">
+        <div className="search-control">
+          <label htmlFor="command-search">Search commands</label>
+
+          <input
+            id="command-search"
+            className="command-search-input"
+            type="search"
+            value={searchQuery}
+            placeholder="Try: merge, remote, restore..."
+            onChange={(event) => setSearchQuery(event.target.value)}
+          />
+        </div>
+
         <div className="category-control">
           <span className="category-control-label">
             Filter by category
@@ -81,11 +111,17 @@ function CommandExplorer() {
         </span>
       </div>
 
-      <div className="command-grid">
-        {filteredCommands.map((command) => (
-          <CommandCard key={command.name} command={command} />
-        ))}
-      </div>
+      {filteredCommands.length > 0 ? (
+        <div className="command-grid">
+          {filteredCommands.map((command) => (
+            <CommandCard key={command.name} command={command} />
+          ))}
+        </div>
+      ) : (
+        <p className="section-description">
+          No Git commands match the current search and category filters.
+        </p>
+      )}
     </section>
   )
 }
