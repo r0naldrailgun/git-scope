@@ -2,6 +2,7 @@ import './App.css'
 import Header from './components/Header'
 import CommandExplorer from './components/CommandExplorer'
 import WorkflowVisualizer from './components/WorkflowVisualizer'
+import CommitChecker from './components/CommitChecker'
 
 function App() {
   return (
@@ -37,25 +38,7 @@ function App() {
 
         <WorkflowVisualizer />
 
-        <section className="upcoming-features single-feature">
-          <article
-            className="feature-card"
-            id="commit-checker"
-          >
-            <span className="feature-number">03</span>
-
-            <h3>Commit Checker</h3>
-
-            <p>
-              Check whether your Git commit messages clearly
-              describe the changes you made.
-            </p>
-
-            <span className="coming-soon">
-              Coming soon
-            </span>
-          </article>
-        </section>
+        <CommitChecker />
       </main>
     </div>
   )

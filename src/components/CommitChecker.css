@@ -1,0 +1,372 @@
+.commit-checker {
+    margin-top: 100px;
+    padding-top: 80px;
+  
+    border-top: 1px solid var(--border);
+  
+    scroll-margin-top: 110px;
+  }
+  
+  .commit-checker-heading {
+    display: grid;
+  
+    grid-template-columns:
+      minmax(0, 1.2fr)
+      minmax(280px, 0.8fr);
+  
+    align-items: end;
+  
+    gap: 50px;
+  
+    margin-bottom: 32px;
+  }
+  
+  .commit-checker-heading h2 {
+    max-width: 680px;
+  
+    margin: 0;
+  
+    color: var(--text-primary);
+  
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    line-height: 1.05;
+  
+    letter-spacing: -0.04em;
+  }
+  
+  .commit-checker-layout {
+    display: grid;
+  
+    grid-template-columns:
+      minmax(0, 0.9fr)
+      minmax(0, 1.1fr);
+  
+    gap: 18px;
+  
+    align-items: start;
+  }
+  
+  .commit-input-panel,
+  .commit-result-panel {
+    padding: 26px;
+  
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  
+    background: rgba(22, 27, 34, 0.82);
+  }
+  
+  .commit-input-panel > label {
+    display: block;
+  
+    margin-bottom: 9px;
+  
+    color: var(--text-secondary);
+  
+    font-size: 0.72rem;
+    font-weight: 700;
+  
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  
+  .commit-message-input {
+    width: 100%;
+  
+    padding: 15px;
+  
+    resize: vertical;
+  
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  
+    outline: none;
+  
+    color: var(--text-primary);
+    background: #0d1117;
+  
+    font-family: "Courier New", monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  
+    transition:
+      border-color 150ms ease,
+      box-shadow 150ms ease;
+  }
+  
+  .commit-message-input::placeholder {
+    color: #6e7681;
+  }
+  
+  .commit-message-input:focus {
+    border-color: var(--accent);
+  
+    box-shadow:
+      0 0 0 3px var(--accent-soft);
+  }
+  
+  .commit-input-meta {
+    display: flex;
+    justify-content: space-between;
+  
+    gap: 12px;
+  
+    margin-top: 8px;
+  
+    color: var(--text-secondary);
+  
+    font-size: 0.68rem;
+  }
+  
+  .commit-suggestion {
+    margin-top: 26px;
+  }
+  
+  .commit-suggestion > span {
+    display: block;
+  
+    margin-bottom: 8px;
+  
+    color: var(--text-secondary);
+  
+    font-size: 0.68rem;
+    font-weight: 700;
+  
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+  
+  .commit-suggestion code {
+    display: block;
+  
+    width: 100%;
+  
+    padding: 13px;
+  
+    overflow-x: auto;
+  
+    border: 1px solid var(--border);
+    border-radius: 9px;
+  
+    color: #79c0ff;
+    background: #0d1117;
+  
+    font-family: "Courier New", monospace;
+    font-size: 0.8rem;
+  
+    white-space: nowrap;
+  }
+  
+  .commit-suggestion button {
+    margin-top: 10px;
+    padding: 9px 12px;
+  
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  
+    cursor: pointer;
+  
+    color: var(--text-primary);
+    background: var(--surface);
+  
+    font-size: 0.76rem;
+    font-weight: 700;
+  
+    transition:
+      border-color 150ms ease,
+      background 150ms ease;
+  }
+  
+  .commit-suggestion button:hover {
+    border-color: #484f58;
+  
+    background: var(--surface-hover);
+  }
+  
+  .commit-score-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  
+    gap: 20px;
+  }
+  
+  .score-label {
+    display: block;
+  
+    margin-bottom: 4px;
+  
+    color: var(--text-secondary);
+  
+    font-size: 0.68rem;
+    font-weight: 700;
+  
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+  
+  .commit-score-header strong {
+    color: var(--text-primary);
+  
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+  
+  .commit-score-header small {
+    margin-left: 3px;
+  
+    color: var(--text-secondary);
+  
+    font-size: 0.85rem;
+  }
+  
+  .commit-strength {
+    padding: 6px 10px;
+  
+    border: 1px solid var(--border);
+    border-radius: 999px;
+  
+    font-family: "Courier New", monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+  }
+  
+  .strength-strong {
+    color: #3fb950;
+  
+    background: rgba(63, 185, 80, 0.08);
+  }
+  
+  .strength-good {
+    color: #d29922;
+  
+    background: rgba(210, 153, 34, 0.08);
+  }
+  
+  .strength-needs-work {
+    color: #f85149;
+  
+    background: rgba(248, 81, 73, 0.08);
+  }
+  
+  .score-track {
+    width: 100%;
+    height: 7px;
+  
+    margin: 18px 0 24px;
+  
+    overflow: hidden;
+  
+    border-radius: 999px;
+  
+    background: #21262d;
+  }
+  
+  .score-fill {
+    height: 100%;
+  
+    border-radius: inherit;
+  
+    background: var(--accent);
+  
+    transition: width 220ms ease;
+  }
+  
+  .commit-check-list {
+    display: grid;
+  
+    gap: 10px;
+  }
+  
+  .commit-check-item {
+    display: grid;
+  
+    grid-template-columns: auto 1fr;
+  
+    gap: 12px;
+  
+    padding: 13px;
+  
+    border: 1px solid var(--border);
+    border-radius: 9px;
+  
+    background: rgba(13, 17, 23, 0.45);
+  }
+  
+  .check-icon {
+    display: grid;
+    place-items: center;
+  
+    width: 25px;
+    height: 25px;
+  
+    border-radius: 50%;
+  
+    font-family: "Courier New", monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+  
+  .check-pass .check-icon {
+    color: #3fb950;
+  
+    background: rgba(63, 185, 80, 0.1);
+  }
+  
+  .check-warning .check-icon {
+    color: #d29922;
+  
+    background: rgba(210, 153, 34, 0.1);
+  }
+  
+  .check-fail .check-icon {
+    color: #f85149;
+  
+    background: rgba(248, 81, 73, 0.1);
+  }
+  
+  .commit-check-item h3 {
+    margin: 1px 0 4px;
+  
+    color: var(--text-primary);
+  
+    font-size: 0.82rem;
+  }
+  
+  .commit-check-item p {
+    margin: 0;
+  
+    color: var(--text-secondary);
+  
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
+  
+  @media (max-width: 850px) {
+    .commit-checker-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 760px) {
+    .commit-checker-heading {
+      grid-template-columns: 1fr;
+  
+      align-items: start;
+  
+      gap: 18px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .commit-input-panel,
+    .commit-result-panel {
+      padding: 20px;
+    }
+  
+    .commit-input-meta {
+      flex-direction: column;
+  
+      gap: 4px;
+    }
+  }
