@@ -1,18 +1,109 @@
-.command-card-actions {
+/* ========================================
+   COMMAND CARD
+======================================== */
+
+.command-card {
+    display: flex;
+    flex-direction: column;
+  
+    min-width: 0;
+    min-height: 340px;
+  
+    padding: 24px;
+  
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  
+    background: rgba(22, 27, 34, 0.82);
+  
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      background 180ms ease,
+      box-shadow 180ms ease;
+  }
+  
+  .command-card:hover {
+    transform: translateY(-4px);
+  
+    border-color: #484f58;
+  
+    background: var(--surface-hover);
+  
+    box-shadow:
+      0 16px 40px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* ========================================
+     CARD HEADER
+  ======================================== */
+  
+  .command-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    gap: 12px;
+  
+    margin-bottom: 24px;
+  }
+  
+  .command-category {
+    display: inline-flex;
+    align-items: center;
+  
+    padding: 5px 9px;
+  
+    border: 1px solid var(--border);
+    border-radius: 999px;
+  
+    color: var(--text-secondary);
+  
+    background: rgba(13, 17, 23, 0.3);
+  
+    font-family: "Courier New", monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+  
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  
+  /* ========================================
+     HEADER ACTIONS
+  ======================================== */
+  
+  .command-card-actions {
     display: flex;
     align-items: center;
   
     gap: 10px;
+  
+    flex-shrink: 0;
   }
+  
+  .command-prompt {
+    color: var(--green);
+  
+    font-family: "Courier New", monospace;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+  
+  /* ========================================
+     FAVORITE BUTTON
+  ======================================== */
   
   .favorite-button {
     display: grid;
     place-items: center;
   
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
   
     padding: 0;
+  
+    flex-shrink: 0;
   
     border: 1px solid var(--border);
     border-radius: 8px;
@@ -33,7 +124,7 @@
   }
   
   .favorite-button:hover {
-    transform: scale(1.05);
+    transform: scale(1.06);
   
     color: #d29922;
   
@@ -45,17 +136,117 @@
   .favorite-button-active {
     color: #d29922;
   
-    border-color: rgba(
-      210,
-      153,
-      34,
-      0.45
-    );
+    border-color: rgba(210, 153, 34, 0.5);
   
-    background: rgba(
-      210,
-      153,
-      34,
-      0.08
-    );
+    background: rgba(210, 153, 34, 0.1);
+  }
+  
+  /* ========================================
+     COMMAND TITLE
+  ======================================== */
+  
+  .command-name {
+    margin: 0 0 14px;
+  
+    color: var(--text-primary);
+  
+    font-family: "Courier New", monospace;
+    font-size: 1.3rem;
+    font-weight: 700;
+  
+    line-height: 1.25;
+  }
+  
+  /* ========================================
+     DESCRIPTION
+  ======================================== */
+  
+  .command-description {
+    margin: 0 0 26px;
+  
+    color: var(--text-secondary);
+  
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+  
+  /* ========================================
+     SYNTAX / EXAMPLE BLOCKS
+  ======================================== */
+  
+  .command-block {
+    width: 100%;
+  
+    margin-top: auto;
+  }
+  
+  .command-block + .command-block {
+    margin-top: 14px;
+  }
+  
+  .command-block-label {
+    display: block;
+  
+    margin-bottom: 7px;
+  
+    color: var(--text-secondary);
+  
+    font-size: 0.66rem;
+    font-weight: 700;
+  
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+  
+  .command-block code {
+    display: block;
+  
+    width: 100%;
+  
+    padding: 11px 12px;
+  
+    overflow-x: auto;
+  
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  
+    color: #79c0ff;
+  
+    background: #0d1117;
+  
+    font-family: "Courier New", monospace;
+    font-size: 0.78rem;
+    line-height: 1.5;
+  
+    white-space: nowrap;
+  }
+  
+  /* ========================================
+     LIGHT THEME
+  ======================================== */
+  
+  [data-theme='light'] .command-card {
+    background: rgba(255, 255, 255, 0.9);
+  }
+  
+  [data-theme='light'] .command-category {
+    background: rgba(246, 248, 250, 0.8);
+  }
+  
+  [data-theme='light'] .command-block code {
+    color: #0550ae;
+  
+    background: #f6f8fa;
+  }
+  
+  /* ========================================
+     RESPONSIVE
+  ======================================== */
+  
+  @media (max-width: 620px) {
+    .command-card {
+      min-height: auto;
+  
+      padding: 20px;
+    }
   }
