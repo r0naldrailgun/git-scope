@@ -1,27 +1,48 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { gitCommands } from '../data/commands'
+import type { GitCommandCategory } from '../types/git'
 import CommandCard from './CommandCard'
 import './CommandExplorer.css'
 import './SearchControls.css'
+import './CategoryControls.css'
+
+type CategoryFilter = 'All' | GitCommandCategory
+
+const categories: CategoryFilter[] = [
+  'All',
+  'Basics',
+  'Branching',
+  'Remote',
+  'History',
+  'Undo',
+]
 
 function CommandExplorer() {
   const [searchQuery, setSearchQuery] = useState('')
+  const [selectedCategory, setSelectedCategory] =
+    useState<CategoryFilter>('All')
 
-  const normalizedSearchQuery = searchQuery.trim().toLowerCase()
+  const filteredCommands = useMemo(() => {
+    const normalizedSearchQuery = searchQuery.trim().toLowerCase()
 
-  const filteredCommands = gitCommands.filter((command) => {
-    if (normalizedSearchQuery === '') {
-      return true
-    }
+    return gitCommands.filter((command) => {
+      const matchesCategory =
+        selectedCategory === 'All' ||
+        command.category === selectedCategory
 
-    return (
-      command.name.toLowerCase().includes(normalizedSearchQuery) ||
-      command.description.toLowerCase().includes(normalizedSearchQuery) ||
-      command.syntax.toLowerCase().includes(normalizedSearchQuery) ||
-      command.example.toLowerCase().includes(normalizedSearchQuery) ||
-      command.category.toLowerCase().includes(normalizedSearchQuery)
-    )
-  })
+      const matchesSearch =
+        normalizedSearchQuery === '' ||
+        command.name.toLowerCase().includes(normalizedSearchQuery) ||
+        command.description
+          .toLowerCase()
+          .includes(normalizedSearchQuery) ||
+        command.syntax.toLowerCase().includes(normalizedSearchQuery) ||
+        command.example.toLowerCase().includes(normalizedSearchQuery) ||
+        command.category.toLowerCase().includes(normalizedSearchQuery)
+
+      return matchesCategory && matchesSearch
+    })
+  }, [searchQuery, selectedCategory])
 
   return (
     <section className="command-explorer" id="commands">
@@ -51,6 +72,30 @@ function CommandExplorer() {
             onChange={(event) => setSearchQuery(event.target.value)}
           />
         </div>
+
+        <div className="category-control">
+          <span className="category-control-label">
+            Filter by category
+          </span>
+
+          <div
+            className="category-filter-list"
+            aria-label="Command categories"
+          >
+            {categories.map((category) => (
+              <button
+                key={category}
+                className={`category-filter-button ${
+                  selectedCategory === category ? 'active' : ''
+                }`}
+                type="button"
+                onClick={() => setSelectedCategory(category)}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
       <div className="command-summary">
@@ -59,14 +104,24 @@ function CommandExplorer() {
           commands
         </span>
 
-        <span>5 categories</span>
+        <span>
+          {selectedCategory === 'All'
+            ? 'All categories'
+            : selectedCategory}
+        </span>
       </div>
 
-      <div className="command-grid">
-        {filteredCommands.map((command) => (
-          <CommandCard key={command.name} command={command} />
-        ))}
-      </div>
+      {filteredCommands.length > 0 ? (
+        <div className="command-grid">
+          {filteredCommands.map((command) => (
+            <CommandCard key={command.name} command={command} />
+          ))}
+        </div>
+      ) : (
+        <p className="section-description">
+          No Git commands match the current search and category filters.
+        </p>
+      )}
     </section>
   )
 }
