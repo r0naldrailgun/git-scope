@@ -355,3 +355,7 @@
     grid-template-columns: 1fr;
   }
 }
+
+.upcoming-features.single-feature {
+  grid-template-columns: 1fr;
+}
