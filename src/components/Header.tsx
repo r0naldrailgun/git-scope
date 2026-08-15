@@ -1,6 +1,12 @@
 import ThemeToggle from './ThemeToggle'
 
-function Header() {
+interface HeaderProps {
+  favoriteCount: number
+}
+
+function Header({
+  favoriteCount,
+}: HeaderProps) {
   return (
     <header className="site-header">
       <div className="header-container">
@@ -17,7 +23,8 @@ function Header() {
             <h1>GitScope</h1>
 
             <p>
-              Interactive Git Workflow Explorer
+              Interactive Git Workflow
+              Explorer
             </p>
           </div>
         </a>
@@ -39,6 +46,19 @@ function Header() {
               Commit Checker
             </a>
           </nav>
+
+          <div
+            className="favorite-count"
+            title={`${favoriteCount} favorite commands`}
+          >
+            <span aria-hidden="true">
+              ★
+            </span>
+
+            <span>
+              {favoriteCount}
+            </span>
+          </div>
 
           <ThemeToggle />
         </div>

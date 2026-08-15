@@ -84,7 +84,11 @@ function App() {
 
   return (
     <div className="app-shell">
-      <Header />
+      <Header
+  favoriteCount={
+    favoriteCommands.length
+  }
+/>
 
       <main className="main-content">
         <section className="hero">
