@@ -1,121 +1,66 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
+import Header from './components/Header'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
+    <div className="app-shell">
+      <Header />
+
+      <main className="main-content">
+        <section className="hero">
+          <p className="eyebrow">LEARN • EXPLORE • PRACTICE</p>
+
+          <h2>Understand Git without memorizing everything.</h2>
+
+          <p className="hero-description">
+            GitScope is an interactive learning tool for exploring Git
+            commands, understanding common workflows, and practicing better
+            commit messages.
           </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+        </section>
 
-      <div className="ticks"></div>
+        <section className="feature-grid">
+          <article className="feature-card" id="commands">
+            <span className="feature-number">01</span>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+            <h3>Git Commands</h3>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+            <p>
+              Explore commonly used Git commands and learn when and why they
+              are used.
+            </p>
+
+            <span className="coming-soon">Coming soon</span>
+          </article>
+
+          <article className="feature-card" id="workflow">
+            <span className="feature-number">02</span>
+
+            <h3>Workflow Visualizer</h3>
+
+            <p>
+              Understand how main, development, and feature branches work
+              together.
+            </p>
+
+            <span className="coming-soon">Coming soon</span>
+          </article>
+
+          <article className="feature-card" id="commit-checker">
+            <span className="feature-number">03</span>
+
+            <h3>Commit Checker</h3>
+
+            <p>
+              Check whether your Git commit messages clearly describe the
+              changes you made.
+            </p>
+
+            <span className="coming-soon">Coming soon</span>
+          </article>
+        </section>
+      </main>
+    </div>
   )
 }
 
