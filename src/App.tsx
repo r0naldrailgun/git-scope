@@ -1,5 +1,6 @@
 import './App.css'
 import Header from './components/Header'
+import CommandExplorer from './components/CommandExplorer'
 
 function App() {
   return (
@@ -17,22 +18,16 @@ function App() {
             commands, understanding common workflows, and practicing better
             commit messages.
           </p>
+
+          <a className="hero-action" href="#commands">
+            Explore commands
+            <span aria-hidden="true"> ↓</span>
+          </a>
         </section>
 
-        <section className="feature-grid">
-          <article className="feature-card" id="commands">
-            <span className="feature-number">01</span>
+        <CommandExplorer />
 
-            <h3>Git Commands</h3>
-
-            <p>
-              Explore commonly used Git commands and learn when and why they
-              are used.
-            </p>
-
-            <span className="coming-soon">Coming soon</span>
-          </article>
-
+        <section className="upcoming-features">
           <article className="feature-card" id="workflow">
             <span className="feature-number">02</span>
 
